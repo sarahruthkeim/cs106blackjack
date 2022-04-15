@@ -37,7 +37,19 @@ public class Card {
     }
 
     public String toString() {
-        return "[" + cardType + ", " + suit + "]";
+        String printedCard;
+        if (cardType == 1) {
+            printedCard = "ACE";
+        } else if (cardType == 11) {
+            printedCard = "JACK";
+        } else if (cardType == 12) {
+            printedCard = "QUEEN";
+        } else if (cardType == 13) {
+            printedCard = "KING";
+        } else {
+            printedCard = String.valueOf(cardType);
+        }
+        return "[" + printedCard + ", " + suit + "]";
     }
 }
 
