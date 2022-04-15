@@ -1,5 +1,5 @@
 public class Card {
-    enum Suit {HEARTS, DIAMONDS, CLUBS, SPADES};
+    public enum Suit {HEARTS, DIAMONDS, CLUBS, SPADES};
     enum Face {ACE, JACK, QUEEN, KING};
 
     private Suit suit;
@@ -35,4 +35,10 @@ public class Card {
             value = value % 20;
         }
     }
+
+    public String toString() {
+        return "[" + cardType + ", " + suit + "]";
+    }
 }
+
+
