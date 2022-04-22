@@ -5,10 +5,12 @@ public class Card {
     private Suit suit;
     private int cardType;
     private int value;
+    private boolean faceUp;
 
     public Card (Suit inputSuit, int inputCardType) {
         this.suit = inputSuit;
         this.cardType = inputCardType;
+        this.faceUp = false;
 
         if (cardType == 1) {
             this.value = inputCardType; // ace can be worth 1 or 11, will need to implement a call to the user to choose
@@ -27,6 +29,10 @@ public class Card {
 
     public int getCardType() {
         return this.cardType;
+    }
+
+    public void revealCard() {
+        this.faceUp = true;
     }
 
     public void updateAceValue() {
@@ -51,6 +57,8 @@ public class Card {
         }
         return "[" + printedCard + ", " + suit + "]";
     }
+
+
 }
 
 
