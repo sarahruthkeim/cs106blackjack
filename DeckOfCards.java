@@ -7,6 +7,10 @@ public class DeckOfCards {
     private LinkedQueue<Card> deck;
     private ArrayList<Card> cardIndex = new ArrayList<Card>(); // used to store the cards, never accessed during game
 
+    public boolean isEmpty() {
+        return deck.isEmpty();
+    }
+
     public DeckOfCards () {
         this.deck = new LinkedQueue();
         for (int i = 1; i < 14; i++) {
@@ -27,7 +31,7 @@ public class DeckOfCards {
         }
     }
 
-    public void Shuffle() {
+    public void shuffle() {
         ArrayList<Card> cardArrayList = new ArrayList<Card>(cardIndex);
         while (cardArrayList.size() > 0) {
             Random rand = new Random(); // https://www.educative.io/edpresso/how-to-generate-random-numbers-in-java

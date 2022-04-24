@@ -1,4 +1,5 @@
 import java.util.ArrayList;
+import java.util.Scanner;
 
 public class Main {
     public static void main (String[] args) {
@@ -27,7 +28,34 @@ public class Main {
 
 
 
+        Scanner playerMoves = new Scanner(System.in);
+        Player currentPlayer = gamePlayerList.first();
+        DeckOfCards gameDeck = new DeckOfCards();
+        gameDeck.shuffle();
         while (gamePlayerList.size() > 0) {  // while the round is still going on
+            // deal two cards to the player
+            System.out.println("Draw another card? (y/n)");
+            String hit = playerMoves.nextLine();
+            boolean hitBool; hitBool = hit.equalsIgnoreCase("y") || hit.equalsIgnoreCase("yes");
+
+            while (hitBool && !currentPlayer.checkStatus()) {
+                if (gameDeck.isEmpty()) {gameDeck.shuffle();}
+                currentPlayer.deal();
+                hit = playerMoves.nextLine();
+                hitBool = hit.equals("y");
+
+                if (currentPlayer.checkStatus()) {
+                    gamePlayerList.remove()
+                    if (currentPlayer.sumCards() == 21) {
+                        System.out.println("congrats! you've won");
+                    } else {
+
+                    }
+                }
+
+            }
+
+
 
         }
 
