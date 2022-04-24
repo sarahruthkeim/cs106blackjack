@@ -2,6 +2,9 @@ import java.util.ArrayList;
 
 public class Player implements Moves{
     int pot;
+    public LinkedQueue<Card>cardQueue= new LinkedQueue<Card>();
+
+    public Player(){}
 
     public void bet(int i){
         if (i > pot){
@@ -10,8 +13,8 @@ public class Player implements Moves{
         else{
             pot-=i;
         }
-        //update the community pot as well
         //move to the next person in linked list and loop through until back at first player
+
     }
 
     public void stay(){
@@ -19,17 +22,16 @@ public class Player implements Moves{
     }
 
     public void hit(){
-        //hand.add(newCard);
-        //pot=sumCards(hand);
+        hand.add(cardQueue.dequeue());
+        pot=sumCards(hand);
         //move to next person in linked list
     }
 
     public int sumCards(ArrayList<Card> cards){
         int sum=0;
-        //for (card item:cards){
-        //find the value of the card
-        //sum+=value of the card
-        //}
+        for (Card item:cards){
+            sum+= item.getValue();
+        }
         return sum;
     }
 
@@ -39,4 +41,10 @@ public class Player implements Moves{
         }
         else{return false;}
     }
+
+    public void deal(){
+        hand.add(cardQueue.dequeue());
+        hand.add(cardQueue.dequeue());
+    }
+    
 }
