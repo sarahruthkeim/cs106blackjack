@@ -17,10 +17,22 @@ public class CircularlyLinkedList<E> {
             return null;
         return tail.getNext( ).getElement( );
     }
+
+
+
+
     public E last( ) {
         if (isEmpty( ))
             return null;
         return tail.getElement( );
+    }
+
+    public Node<E> getFirst() {
+        return tail.getNext();
+    }
+
+    public Node<E> getLast() {
+        return tail;
     }
 
     // update methods
@@ -43,6 +55,22 @@ public class CircularlyLinkedList<E> {
         addFirst(e);                                // insert new element at front of list
         tail = tail.getNext( );                         // now new element becomes the tail
     }
+
+    public E removeAt(int position) {
+        Node<E> currentNode = tail;
+        for (int i = 0; i <= position; i++) {
+            if (i == position) {
+                Node<E> removedNode = currentNode.getNext();
+                currentNode.setNext(removedNode.getNext());
+                removedNode.setNext(null);
+                size--;
+                return removedNode.getElement();
+            }
+            currentNode = currentNode.getNext();
+        }
+        return null;
+    }
+
     public E removeFirst( ) {                       // removes and returns the first element
         if (isEmpty())                              // nothing to remove
             return null;
@@ -54,4 +82,16 @@ public class CircularlyLinkedList<E> {
         size--;
         return head.getElement( );
     }
+
+    public String toString() {
+        Node<E> currentNode = tail.getNext();
+        String printedList = "{";
+        for (int i = 0; i < size - 1; i++) {
+            printedList += currentNode.toString() + ", ";
+            currentNode = currentNode.getNext();
+        }
+        return printedList + currentNode.toString() + "}";
+    }
+
+
 }
