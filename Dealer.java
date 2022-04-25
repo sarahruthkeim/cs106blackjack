@@ -1,16 +1,16 @@
 import java.util.ArrayList;
 
 public class Dealer implements Moves{
+    int pot;
 
-    public void stay() {
+
+    public void hit(LinkedQueue<Card> cardQueue) {
+        hand.add(cardQueue.dequeue());
+        pot=sumCards();
 
     }
 
-    public void hit() {
-
-
-    }
-    public int sumCards(ArrayList<Card> hand) {
+    public int sumCards() {
         int sum = 0;
         for(Card item:hand) {
             int value = item.getValue();
@@ -20,15 +20,19 @@ public class Dealer implements Moves{
 
     }
 
-    public void checkSeventeen(ArrayList<Card> Cards) {
-        if(this.sumCards(Cards) < 17) {
-            hit();
+    public void deal(LinkedQueue<Card> cardQueue){
+        hand.add(cardQueue.dequeue());
+        hand.add(cardQueue.dequeue());
+    }
+
+
+    public boolean checkSeventeen(ArrayList<Card> Cards) {
+        if(this.sumCards() < 17) {
+           return true;
         }
         else {
-          stay();
+          return false;
         }
-
-
 
     }
 

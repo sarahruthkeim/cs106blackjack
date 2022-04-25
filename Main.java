@@ -17,6 +17,7 @@ public class Main {
         playerListIndex.add(player3);
         playerListIndex.add(player4);
 
+
         CircularlyLinkedList<Player> gamePlayerList = new CircularlyLinkedList<Player>();
         for (int i = roundNumber; i < playerListIndex.size(); i++) {
             gamePlayerList.addLast(playerListIndex.get(i));
@@ -24,6 +25,18 @@ public class Main {
 
         for (int i = 0; i < roundNumber; i++) {
             gamePlayerList.addLast(playerListIndex.get(i));
+        }
+
+        ArrayList<Player> numberOfPlayers = new ArrayList<Player>();
+        Player newPlayer = new Player();
+
+        Scanner sc = new Scanner(System.in);
+        System.out.println("Enter the number of players");
+        int size = sc.nextInt();
+
+        for(int i=0; i<size; i++) {
+            numberOfPlayers.add(newPlayer);
+
         }
 
 
@@ -45,7 +58,7 @@ public class Main {
                 hitBool = hit.equals("y");
 
                 if (currentPlayer.checkStatus()) {
-                    gamePlayerList.remove()
+                    gamePlayerList.remove();
                     if (currentPlayer.sumCards() == 21) {
                         System.out.println("congrats! you've won");
                     } else {
