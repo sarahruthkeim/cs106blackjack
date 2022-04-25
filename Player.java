@@ -1,3 +1,5 @@
+import java.util.ArrayList;
+
 public class Player implements Moves{
     int pot;
 
@@ -12,6 +14,10 @@ public class Player implements Moves{
         }
         //move to the next person in linked list and loop through until back at first player
 
+    }
+
+    public ArrayList<Card> getHand() {
+        return this.hand;
     }
 
     public void hit(DeckOfCards cardQueue){

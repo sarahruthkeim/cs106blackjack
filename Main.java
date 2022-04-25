@@ -4,6 +4,8 @@ import java.util.Scanner;
 public class Main {
     public static void main (String[] args) {
 
+        System.out.println("hello");
+
         Player player1 = new Player();
         Player player2 = new Player();
         Player player3 = new Player();
@@ -39,10 +41,14 @@ public class Main {
             playerIndex++;
             currentPlayer.deal(gameDeck);
 
+            System.out.println("Current hand: " + currentPlayer.getHand());
+            System.out.println("Draw another card? (y/n)");
             String hit = playerMoves.nextLine();
             boolean hitBool; hitBool = hit.equalsIgnoreCase("y") || hit.equalsIgnoreCase("yes");
 
             while (hitBool && !currentPlayer.checkStatus()) {
+                System.out.println("Current sum: " + currentPlayer.sumCards());
+                System.out.println("Current status: " + )
                 if (gameDeck.isEmpty()) {gameDeck.shuffle();}
                 currentPlayer.hit(gameDeck);
 
@@ -61,6 +67,7 @@ public class Main {
                             System.out.println("You've went over, better luck next time!");
                         }
                     } else {
+                        System.out.println("Current hand: " + currentPlayer.getHand());
                         System.out.println("Draw another card? (y/n)");
                     }
                 }
