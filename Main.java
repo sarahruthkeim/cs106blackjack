@@ -49,7 +49,7 @@ public class Main {
 
             while (hitBool && !currentPlayer.checkStatus()) {
                 System.out.println("Current sum: " + currentPlayer.sumCards());
-                System.out.println("Current status: " + )
+                System.out.println("Current status: " + );
                 if (gameDeck.isEmpty()) {gameDeck.shuffle();}
                 currentPlayer.hit(gameDeck);
 
