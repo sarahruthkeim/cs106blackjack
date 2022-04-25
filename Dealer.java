@@ -5,7 +5,7 @@ public class Dealer implements Moves{
 
 
     public void hit(DeckOfCards cardQueue) {
-        hand.add(cardQueue.dequeue());
+        hand.add(cardQueue.getDeck().dequeue());
         pot=sumCards();
 
     }
@@ -21,8 +21,8 @@ public class Dealer implements Moves{
     }
 
     public void deal(DeckOfCards cardQueue){
-        hand.add(cardQueue.dequeue());
-        hand.add(cardQueue.dequeue());
+        hand.add(cardQueue.getDeck().dequeue());
+        hand.add(cardQueue.getDeck().dequeue());
     }
 
 
