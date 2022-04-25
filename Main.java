@@ -17,7 +17,6 @@ public class Main {
         playerListIndex.add(player3);
         playerListIndex.add(player4);
 
-
         CircularlyLinkedList<Player> gamePlayerList = new CircularlyLinkedList<Player>();
         for (int i = roundNumber; i < playerListIndex.size(); i++) {
             gamePlayerList.addLast(playerListIndex.get(i));
@@ -27,50 +26,50 @@ public class Main {
             gamePlayerList.addLast(playerListIndex.get(i));
         }
 
-        ArrayList<Player> numberOfPlayers = new ArrayList<Player>();
-        Player newPlayer = new Player();
-
-        Scanner sc = new Scanner(System.in);
-        System.out.println("Enter the number of players");
-        int size = sc.nextInt();
-
-        for(int i=0; i<size; i++) {
-            numberOfPlayers.add(newPlayer);
-
-        }
-
 
 
         Scanner playerMoves = new Scanner(System.in);
-        Player currentPlayer = gamePlayerList.first();
+        Node<Player> currentNode = gamePlayerList.getFirst();
+        Player currentPlayer = currentNode.getElement();
+
         DeckOfCards gameDeck = new DeckOfCards();
         gameDeck.shuffle();
-        while (gamePlayerList.size() > 0) {  // while the round is still going on
-            // deal two cards to the player
-            System.out.println("Draw another card? (y/n)");
+        int playerIndex = 0;
+        while (gamePlayerList.size() > 0  && playerIndex < playerListIndex.size()) {  // while the round is still going on
+            playerIndex++;
+            currentPlayer.deal(gameDeck);
+
             String hit = playerMoves.nextLine();
             boolean hitBool; hitBool = hit.equalsIgnoreCase("y") || hit.equalsIgnoreCase("yes");
 
             while (hitBool && !currentPlayer.checkStatus()) {
                 if (gameDeck.isEmpty()) {gameDeck.shuffle();}
-                currentPlayer.deal();
+                currentPlayer.hit(gameDeck);
+
                 hit = playerMoves.nextLine();
                 hitBool = hit.equals("y");
 
-                if (currentPlayer.checkStatus()) {
-                    gamePlayerList.remove();
-                    if (currentPlayer.sumCards() == 21) {
-                        System.out.println("congrats! you've won");
+                if (!hitBool) {
+                    currentNode = currentNode.getNext();
+                    currentPlayer = currentNode.getElement();
+                } else {
+                    if (currentPlayer.checkStatus()) {
+                        gamePlayerList.removeAt(playerIndex);
+                        if (currentPlayer.sumCards() == 21) {
+                            System.out.println("congrats! you've won");
+                        } else {
+                            System.out.println("You've went over, better luck next time!");
+                        }
                     } else {
-
+                        System.out.println("Draw another card? (y/n)");
                     }
                 }
-
             }
-
-
-
         }
+
+        // add while loop here to deal cards into the dealers hand
+        // add while loop here to compare players to dealer
+
 
     }
 }
