@@ -4,7 +4,7 @@ public class Dealer implements Moves{
     int pot;
 
 
-    public void hit(LinkedQueue<Card> cardQueue) {
+    public void hit(DeckOfCards cardQueue) {
         hand.add(cardQueue.dequeue());
         pot=sumCards();
 
@@ -20,13 +20,13 @@ public class Dealer implements Moves{
 
     }
 
-    public void deal(LinkedQueue<Card> cardQueue){
+    public void deal(DeckOfCards cardQueue){
         hand.add(cardQueue.dequeue());
         hand.add(cardQueue.dequeue());
     }
 
 
-    public boolean checkSeventeen(ArrayList<Card> Cards) {
+    public boolean checkSeventeen(DeckOfCards Cards) {
         if(this.sumCards() < 17) {
            return true;
         }

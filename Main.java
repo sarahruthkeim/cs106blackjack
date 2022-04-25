@@ -3,6 +3,7 @@ import java.util.Scanner;
 
 public class Main {
     public static void main (String[] args) {
+        Dealer newDealer = new Dealer();
 
         System.out.println("hello");
 
@@ -75,6 +76,9 @@ public class Main {
         }
 
         // add while loop here to deal cards into the dealers hand
+        while(newDealer.checkSeventeen(gameDeck) == true) {
+            newDealer.hit(gameDeck);
+        }
         // add while loop here to compare players to dealer
 
 
