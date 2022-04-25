@@ -1,8 +1,5 @@
-import java.util.ArrayList;
-
 public class Player implements Moves{
     int pot;
-    public LinkedQueue<Card>cardQueue= new LinkedQueue<Card>();
 
     public Player(){}
 
@@ -17,34 +14,29 @@ public class Player implements Moves{
 
     }
 
-    public void stay(){
+    public void hit(DeckOfCards cardQueue){
+        hand.add(cardQueue.getDeck().dequeue());
         //move to next person in linked list
     }
 
-    public void hit(){
-        hand.add(cardQueue.dequeue());
-        pot=sumCards(hand);
-        //move to next person in linked list
-    }
-
-    public int sumCards(ArrayList<Card> cards){
+    public int sumCards(){
         int sum=0;
-        for (Card item:cards){
+        for (Card item:hand){
             sum+= item.getValue();
         }
         return sum;
     }
 
     public boolean checkStatus(){
-        if (sumCards(hand)>=21){
+        if (sumCards()>=21){
             return true;
         }
         else{return false;}
     }
 
-    public void deal(){
-        hand.add(cardQueue.dequeue());
-        hand.add(cardQueue.dequeue());
+    public void deal(DeckOfCards cardQueue){
+        hand.add(cardQueue.getDeck().dequeue());
+        hand.add(cardQueue.getDeck().dequeue());
     }
-    
+
 }

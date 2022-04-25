@@ -7,11 +7,9 @@ public class DeckOfCards {
     private LinkedQueue<Card> deck;
     private ArrayList<Card> cardIndex = new ArrayList<Card>(); // used to store the cards, never accessed during game
 
-    public boolean isEmpty() {
-        return deck.isEmpty();
-    }
 
-    public DeckOfCards () {
+
+    public DeckOfCards () { // constructor
         this.deck = new LinkedQueue();
         for (int i = 1; i < 14; i++) {
             for (int j = 1; j < 5; j ++) {
@@ -29,6 +27,14 @@ public class DeckOfCards {
                 cardIndex.add(newCard);
             }
         }
+    }
+
+    public LinkedQueue<Card> getDeck() {
+        return this.deck;
+    }
+
+    public boolean isEmpty() {
+        return deck.isEmpty();
     }
 
     public void shuffle() {

@@ -37,14 +37,14 @@ public class Main {
         int playerIndex = 0;
         while (gamePlayerList.size() > 0  && playerIndex < playerListIndex.size()) {  // while the round is still going on
             playerIndex++;
-            currentPlayer.deal();
+            currentPlayer.deal(gameDeck);
 
             String hit = playerMoves.nextLine();
             boolean hitBool; hitBool = hit.equalsIgnoreCase("y") || hit.equalsIgnoreCase("yes");
 
             while (hitBool && !currentPlayer.checkStatus()) {
                 if (gameDeck.isEmpty()) {gameDeck.shuffle();}
-                currentPlayer.hit();
+                currentPlayer.hit(gameDeck);
 
                 hit = playerMoves.nextLine();
                 hitBool = hit.equals("y");
