@@ -1,97 +1,125 @@
 // copied from slides
 
 public class CircularlyLinkedList<E> {
-    private Node<E> tail;
-    private int size;
+/**
+* Circularly Linked List implementation taken from slides
+*/
 
-    public CircularlyLinkedList( ) {
-        this.tail = null;
-        this.size = 0;
-    }
+   private Node<E> tail;
+   private int size;
 
-    // access methods
-    public int size( ) { return size; }
-    public boolean isEmpty( ) { return size == 0; }
-    public E first( ) {
-        if (isEmpty( ))
-            return null;
-        return tail.getNext( ).getElement( );
-    }
+   public CircularlyLinkedList( ) {
+       this.tail = null;
+       this.size = 0;
+   }
+
+   // access methods
+   public int size( ) { return size; }
+   public boolean isEmpty( ) { return size == 0; }
+   public E first( ) {
+       if (isEmpty( ))
+           return null;
+       return tail.getNext( ).getElement( );
+   }
 
 
 
 
-    public E last( ) {
-        if (isEmpty( ))
-            return null;
-        return tail.getElement( );
-    }
+   public E last( ) {
+       if (isEmpty( ))
+           return null;
+       return tail.getElement( );
+   }
 
-    public Node<E> getFirst() {
-        return tail.getNext();
-    }
+   public Node<E> getFirst() {
+       return tail.getNext();
+   }
 
-    public Node<E> getLast() {
-        return tail;
-    }
+   public Node<E> getLast() {
+       return tail;
+   }
 
-    // update methods
-    public void rotate( ) {
-        if (tail != null)
-            tail = tail.getNext( );
-    }
-    public void addFirst(E e) {
-        if (size == 0) {
-            tail = new Node<>(e, null);
-            tail.setNext(tail);
-        } else {
-            Node<E> newest = new Node<>(e, null);
-            newest.setNext(tail.getNext());
-            tail.setNext(newest);
-        }
-        size++;
-    }
-    public void addLast(E e) {                      // adds element e to the end of the list
-        addFirst(e);                                // insert new element at front of list
-        tail = tail.getNext( );                         // now new element becomes the tail
-    }
+   // update methods
+   public void rotate( ) {
+       if (tail != null)
+           tail = tail.getNext( );
+   }
+   public void addFirst(E e) {
+       if (size == 0) {
+           tail = new Node<>(e, null);
+           tail.setNext(tail);
+       } else {
+           Node<E> newest = new Node<>(e, null);
+           newest.setNext(tail.getNext());
+           tail.setNext(newest);
+       }
+       size++;
+   }
+   public void addLast(E e) {                      // adds element e to the end of the list
+       addFirst(e);                                // insert new element at front of list
+       tail = tail.getNext( );                         // now new element becomes the tail
+   }
 
-    public E removeAt(int position) {
-        Node<E> currentNode = tail;
-        for (int i = 0; i <= position; i++) {
-            if (i == position) {
-                Node<E> removedNode = currentNode.getNext();
-                currentNode.setNext(removedNode.getNext());
-                removedNode.setNext(null);
-                size--;
-                return removedNode.getElement();
-            }
-            currentNode = currentNode.getNext();
-        }
-        return null;
-    }
+   public Node<E> getTail() {
+       return this.tail;
+   }
 
-    public E removeFirst( ) {                       // removes and returns the first element
-        if (isEmpty())                              // nothing to remove
-            return null;
-        Node<E> head = tail.getNext( );
-        if (head == tail)
-            tail = null;                            // must be the only node left
-        else
-            tail.setNext(head.getNext( ));         // removes ”head” from the list
-        size--;
-        return head.getElement( );
-    }
+   public E removeAt(int position) {
+       Node<E> currentNode = tail;
+       for (int i = 0; i <= position; i++) {
+           if (i == position) {
+               Node<E> removedNode = currentNode.getNext();
+               currentNode.setNext(removedNode.getNext());
+               removedNode.setNext(null);
+               size--;
+               return removedNode.getElement();
+           }
+           currentNode = currentNode.getNext();
+       }
+       return null;
+   }
 
-    public String toString() {
-        Node<E> currentNode = tail.getNext();
-        String printedList = "{";
-        for (int i = 0; i < size - 1; i++) {
-            printedList += currentNode.toString() + ", ";
-            currentNode = currentNode.getNext();
-        }
-        return printedList + currentNode.toString() + "}";
-    }
+   public void removeElement(E element) {
+       Node<E> currentNode = tail.getNext(); // first, node that will be removed
+       Node<E> prevNode = tail;
+       for (int i = 0; i < size; i++) {
+           if (currentNode.getElement() == element) {
+               if (currentNode == tail) {
+                   this.tail = prevNode;
+               }
+               prevNode.setNext(currentNode.getNext());
+               currentNode.setNext(null);
+               size--;
+               return;
+           }
+           prevNode = currentNode;
+           currentNode = currentNode.getNext();
+       }
+   }
+
+   public E removeFirst( ) {                       // removes and returns the first element
+       if (isEmpty())                              // nothing to remove
+           return null;
+       Node<E> head = tail.getNext( );
+       if (head == tail)
+           tail = null;                            // must be the only node left
+       else
+           tail.setNext(head.getNext( ));         // removes ”head” from the list
+       size--;
+       return head.getElement( );
+   }
+
+   public String toString() {
+       Node<E> currentNode = tail.getNext();
+       String printedList = "{";
+       for (int i = 0; i < size - 1; i++) {
+           printedList += currentNode.toString() + ", ";
+           currentNode = currentNode.getNext();
+       }
+       return printedList + currentNode.toString() + "}";
+   }
 
 
 }
+
+
