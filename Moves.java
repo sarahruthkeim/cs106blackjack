@@ -1,8 +1,11 @@
 import java.util.ArrayList;
 
-public interface Moves {
-    ArrayList<Card> hand =new ArrayList<Card>();
+/**
+* Interface that holds hit and sumCards methods used by both player and dealer
+*/
 
-    public void hit(DeckOfCards cardQueue);
-    public int sumCards();
+public interface Moves {
+   public void hit(DeckOfCards cardQueue);
+   public int sumCards();
 }
+
